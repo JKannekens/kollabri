@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+  <body>
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script>
+      const socket = io('http://localhost:3000');
+
+      socket.on('connect', () => {
+        console.log('Connected:', socket.id);
+        socket.emit('room:enter', {
+          roomId: 'demo-room',
+          userId: 'u123',
+          userInfo: {
+            name: 'Alice',
+            color: '#ff00ff',
+            avatarUrl: 'https://example.com/avatar.png',
+          },
+        });
+      });
+
+      socket.on('disconnect', () => {
+        console.log('Disconnected');
+      });
+    </script>
+  </body>
+</html>
